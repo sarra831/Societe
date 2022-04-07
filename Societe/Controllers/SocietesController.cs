@@ -19,30 +19,20 @@ namespace Societe.Controllers
             this.configuration = configuration;
         }
     }
-    // api methode to get all data from societe table 
-    /*[HttpGet]
-    public JsonResult Get() 
+
+
+    [HttpGet]
+    public async Task<JsonResult> Get()
     {
-        string query = @"select Id , Nom ,Responsable,MatriculeFiscal,Date from dbo.Societe";
-        DataTable table = new DataTable();
-        string sqlDataSource = this.configuration.GetConnectionString("SocieteAppCon");
-        SqlDataReader myReader; 
-        using (SqlConnection myCon = new SqlConnection(sqlDataSource))
-        {
-            myCon.Open();
-            using (SqlCommand myCommand = new SqlCommand(query, myCon))
-            {
-                myReader = myCommand.ExecuteReader();
-                table.Load(myReader);
-                myReader.Close();
-                myCon.Close();
-            }
-        }
+      
 
-        return new JsonResult(table);
+        return new JsonResult(await this.dataContext.Societes.ToListAsync());
 
-    } */ 
-     
+    }
+
+
+
+
 
 
 

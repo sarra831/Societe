@@ -19,7 +19,7 @@ namespace Societe.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PerSc", x => x.Id);
+                    table.PrimaryKey("PK_PerSc", x => x.CarteID);
                 });
 
             migrationBuilder.CreateTable(
@@ -34,7 +34,7 @@ namespace Societe.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Societes", x => x.Id);
+                    table.PrimaryKey("PK_Societes", x => x.MatriculeFiscal);
                 });
         }
 

@@ -20,7 +20,7 @@ namespace Societe.Controllers
         }
     }
     // api methode to get all data from societe table 
-    [HttpGet]
+    /*[HttpGet]
     public JsonResult Get() 
     {
         string query = @"select Id , Nom ,Responsable,MatriculeFiscal,Date from dbo.Societe";
@@ -41,7 +41,7 @@ namespace Societe.Controllers
 
         return new JsonResult(table);
 
-    }
+    } */ 
      
 
 

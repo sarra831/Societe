@@ -26,7 +26,7 @@ namespace Societe.Controllers
         string query = @"select Id , Nom ,Responsable,MatriculeFiscal,Date from dbo.Societe";
         DataTable table = new DataTable();
         string sqlDataSource = this.configuration.GetConnectionString("SocieteAppCon");
-        SqlDataReader myReader;
+        SqlDataReader myReader; 
         using (SqlConnection myCon = new SqlConnection(sqlDataSource))
         {
             myCon.Open();

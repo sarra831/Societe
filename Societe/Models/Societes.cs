@@ -11,7 +11,7 @@ namespace Societe.Models
         public string Nom   { get; set; }
         public string Responsable { get; set; }
         public string MatriculeFiscal { get; set; }
-        public string Date { get; set; }
+        //public string Date { get; set; }
 
         
 

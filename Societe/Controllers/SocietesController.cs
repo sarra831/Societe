@@ -12,13 +12,12 @@ namespace Societe.Controllers
     [ApiController]
     public class SocietesController : ControllerBase
     {
-        //to read the connexin string from appsettings file we use dependancy injection 
-        protected readonly IConfiguration configuration;
-        public SocietesController(IConfiguration configuration)
+        private readonly DataContext dataContext;
+        public SocietesController(DataContext context)
         {
-            this.configuration = configuration;
+            this.dataContext = context;
         }
-    }
+    
 
 
     [HttpGet]

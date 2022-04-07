@@ -13,7 +13,7 @@ namespace Societe.Controllers
     public class SocietesController : ControllerBase
     {
         //to read the connexin string from appsettings file we use dependancy injection 
-        private readonly IConfiguration configuration;
+        protected readonly IConfiguration configuration;
         public SocietesController(IConfiguration configuration)
         {
             this.configuration = configuration;
@@ -21,7 +21,7 @@ namespace Societe.Controllers
     }
     // api methode to get all data from societe table 
     [HttpGet]
-    public JsonResult Get()
+    public JsonResult Get() 
     {
         string query = @"select Id , Nom ,Responsable,MatriculeFiscal,Date from dbo.Societe";
         DataTable table = new DataTable();

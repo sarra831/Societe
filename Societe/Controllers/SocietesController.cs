@@ -17,35 +17,69 @@ namespace Societe.Controllers
         {
             this.dataContext = context;
         }
-    
 
 
-    [HttpGet]
-    public async Task<JsonResult> Get()
-    {
-      
 
-        return new JsonResult(await this.dataContext.Societes.ToListAsync());
+        [HttpGet]
+        public async Task<JsonResult> Get()
+        {
+
+
+            return new JsonResult(await this.dataContext.Societes.ToListAsync());
+
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> Post(Societes soc)
+        {
+            this.dataContext.Societes.Add(soc);
+            await this.dataContext.SaveChangesAsync();
+            return new JsonResult("succès!");
+        }
+
+        [HttpPut]
+
+        public async Task<JsonResult> Put(Societes soc)
+        {
+
+            var societe = await this.dataContext.Societes.FindAsync(soc.MatriculeFiscal);
+            if (societe == null)
+            {
+                return new JsonResult("Societe non trouvé ");
+            }
+            societe.Nom = soc.Nom;
+            societe.Responsable = soc.Responsable;
+          
+            await this.dataContext.SaveChangesAsync();
+
+            return new JsonResult("actualisé");
+        }
+
+        [HttpDelete("{MatriculeFiscal}")]
+        public async Task<JsonResult> Delete(int MatriculeFiscal)
+        {
+            
+
+            var societe = await this.dataContext.Societes.FindAsync(MatriculeFiscal);
+            if (societe == null)
+            {
+                return new JsonResult("Societe non trouvé");
+            }
+
+            dataContext.Societes.Remove(societe);
+            await this.dataContext.SaveChangesAsync();
+
+            return new JsonResult("Supprimé");
+        }
+
+
+
+
+
+
+
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 

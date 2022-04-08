@@ -66,7 +66,7 @@ namespace Societe.Controllers
             var agentsc = await this.dataContext.PerSc.FindAsync(Id);
             if (agentsc == null)
             {
-                return new JsonResult("Societe non trouvé");
+                return new JsonResult("Agent non trouvé");
             }
 
             dataContext.PerSc.Remove(agentsc);

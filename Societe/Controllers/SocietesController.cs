@@ -36,13 +36,13 @@ namespace Societe.Controllers
             await this.dataContext.SaveChangesAsync();
             return new JsonResult("succès!");
         }
-
+      
         [HttpPut]
 
         public async Task<JsonResult> Put(Societes soc)
         {
 
-            var societe = await this.dataContext.Societes.FindAsync(soc.MatriculeFiscal);
+            var societe = await this.dataContext.Societes.FindAsync(soc.Id);
             if (societe == null)
             {
                 return new JsonResult("Societe non trouvé ");
@@ -55,12 +55,13 @@ namespace Societe.Controllers
             return new JsonResult("actualisé");
         }
 
-        [HttpDelete("{MatriculeFiscal}")]
-        public async Task<JsonResult> Delete(int MatriculeFiscal)
+       
+        [HttpDelete("{id}")]
+        public async Task<JsonResult> Delete(int Id)
         {
             
 
-            var societe = await this.dataContext.Societes.FindAsync(MatriculeFiscal);
+            var societe = await this.dataContext.Societes.FindAsync(Id);
             if (societe == null)
             {
                 return new JsonResult("Societe non trouvé");

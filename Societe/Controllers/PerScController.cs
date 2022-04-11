@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json.Serialization;
 
-namespace Societe.Controllers
+namespace PerSc.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

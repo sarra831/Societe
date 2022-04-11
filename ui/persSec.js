@@ -1,0 +1,1 @@
+const home={templates:'<h1> Page des Agents </h1>'}

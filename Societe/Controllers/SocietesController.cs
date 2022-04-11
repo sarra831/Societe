@@ -13,12 +13,7 @@ namespace Societe.Controllers
     public class SocietesController : ControllerBase
     {
         private readonly DataContext dataContext;
-        public SocietesController(DataContext context)
-        {
-            this.dataContext = context;
-        }
-
-
+        public SocietesController(DataContext context) => dataContext = context;
 
         [HttpGet]
         public async Task<JsonResult> Get()
@@ -36,15 +31,18 @@ namespace Societe.Controllers
             await this.dataContext.SaveChangesAsync();
             return new JsonResult("succès!");
         }
-      
-        [HttpPut]
 
-        public async Task<JsonResult> Put(Societes soc)
+        [HttpPut]
+        [Route("Societes/Edit/{id?}")]
+        
+        public async Task<JsonResult> Put(int Id)
+
         {
 
             var societe = await this.dataContext.Societes.FindAsync(soc.Id);
+           
             if (societe == null)
-            {
+            {   
                 return new JsonResult("Societe non trouvé ");
             }
             societe.Nom = soc.Nom;
@@ -52,10 +50,10 @@ namespace Societe.Controllers
           
             await this.dataContext.SaveChangesAsync();
 
-            return new JsonResult("actualisé");
+            return new JsonResult("actualisé"); 
         }
 
-       
+
         [HttpDelete("{id}")]
         public async Task<JsonResult> Delete(int Id)
         {

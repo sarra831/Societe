@@ -14,10 +14,10 @@ namespace Societe.Controllers
     [ApiController]
     public class PerScController : ControllerBase
     {
-        private readonly DataContext dataContext;
+        private readonly DataContext DataContext;
         public PerScController(DataContext context)
         {
-            this.dataContext = context;
+            this.DataContext = context;
         }
 
 
@@ -27,15 +27,15 @@ namespace Societe.Controllers
         {
 
 
-            return new JsonResult(await this.dataContext.PerSc.ToListAsync());
+            return new JsonResult(await this.DataContext.PerSc.ToListAsync());
 
         }
         // creation
         [HttpPost]
         public async Task<JsonResult> Post(PerSc prs)
         {
-            this.dataContext.PerSc.Add(prs);
-            await this.dataContext.SaveChangesAsync();
+            this.DataContext.PerSc.Add(prs);
+            await this.DataContext.SaveChangesAsync();
             return new JsonResult("succès!");
         }
         //modifications update
@@ -44,7 +44,7 @@ namespace Societe.Controllers
         public async Task<JsonResult> Put(PerSc prs)
         {
 
-            var agentsc = await this.dataContext.PerSc.FindAsync(prs.Id);
+            var agentsc = await this.DataContext.PerSc.FindAsync(prs.Id);
             if (agentsc == null)
             {
                 return new JsonResult("Societe non trouvé ");
@@ -52,7 +52,7 @@ namespace Societe.Controllers
             agentsc.CarteID = agentsc.CarteID;
             agentsc.Nom_Prenom = agentsc.Nom_Prenom;
 
-            await this.dataContext.SaveChangesAsync();
+            await this.DataContext.SaveChangesAsync();
 
             return new JsonResult("actualisé");
         }
@@ -63,14 +63,14 @@ namespace Societe.Controllers
         {
 
 
-            var agentsc = await this.dataContext.PerSc.FindAsync(Id);
+            var agentsc = await this.DataContext.PerSc.FindAsync(Id);
             if (agentsc == null)
             {
                 return new JsonResult("Agent non trouvé");
             }
 
-            dataContext.PerSc.Remove(agentsc);
-            await this.dataContext.SaveChangesAsync();
+            DataContext.PerSc.Remove(agentsc);
+            await this.DataContext.SaveChangesAsync();
 
             return new JsonResult(" Agent Supprimé !");
         }
